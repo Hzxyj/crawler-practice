@@ -6,12 +6,12 @@ import re
 import os
 import time
 
-url="http://www.wnacg.org/photos-slide-aid-132415.html"
 target_site="http://www.wnacg.org"
 work_dir=os.getcwd()
 response=None
 path=None
-rate=1
+url=None
+rate=0
 
 def enquire():
     global response,url
@@ -20,6 +20,9 @@ def enquire():
     except IndexError:
         print("not have url")
         os._exit(1)
+    if(re.search("index",url)):
+        url=re.sub("index","slide",url)
+        #print(url)
     response=requests.get(url)
 
 def get_pic_url():
