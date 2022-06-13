@@ -29,7 +29,9 @@ def get_pic_url():
     pic_info=re.search("/photo.*\.html",str(response.text)).group()
     pic_info=target_site+pic_info
     doc=requests.get(pic_info)
-    pic_url=re.findall("(?<=//).*?\.jpg(?=\\\\\")",str(doc.text))
+    #print(str(doc.text))
+    pic_url=re.findall("(?<=//).*?\.(?:jpg|png)(?=\\\\\")",str(doc.text))
+    #print(pic_url)
     return pic_url
 
 def down_pic(pic_url):
