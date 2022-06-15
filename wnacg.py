@@ -36,10 +36,11 @@ def get_pic_url():
 
 def down_pic(pic_url):
     num=1
+    format=re.search("\.\w*$",pic_url[0]).group()
     for i in pic_url:
         print("picture:"+str(num))
         pic=requests.get("http://"+i).content
-        with open(path+"/"+str(num)+".jpg","wb") as f:
+        with open(path+"/"+str(num)+format,"wb") as f:
             f.write(pic)
         num+=1
         time.sleep(rate)
